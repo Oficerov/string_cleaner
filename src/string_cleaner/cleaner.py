@@ -33,11 +33,11 @@ class Clean:
     def get_clean_string(self) -> str:
         """Replace special charts by html-entity and return clean string."""
         if self.__rule == 's':
-            for letter in self.__string:
-                if letter in self.__entity_map:
-                    self.__clean_string += self.__entity_map[letter]
+            for symbol in self.__string:
+                if symbol in self.__entity_map:
+                    self.__clean_string += self.__entity_map[symbol]
                 else:
-                    self.__clean_string += letter
+                    self.__clean_string += symbol
             return self.__clean_string
         elif type(self.__rule) is not str:
             raise TypeError(f'Rule \'{self.__rule}\' have wrong ({type(self.__rule)}) type, when need str')
