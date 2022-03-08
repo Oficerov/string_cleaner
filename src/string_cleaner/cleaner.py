@@ -25,6 +25,23 @@ class TakeString:
         self.__rule: str = rule
         self.__map_reader()
 
+    def __enter__(self):
+        """Provide work with context manager. Return clean string"""
+        return self.make_clean_string()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Remove all created data from memory after work module"""
+        if self.__entity_map:
+            del self.__entity_map
+        if self.__clean_string:
+            del self.__clean_string
+        if self.__string:
+            del self.__string
+        if self.__rule:
+            del self.__rule
+        if self.__clean_string:
+            del self.__clean_string
+
     def __map_reader(self):
         """Read entity map from json file and create dict by this file"""
         with open(f'{dirname(__file__)}\\entity_map.json', mode='r', encoding='utf-8') as entity_map:
