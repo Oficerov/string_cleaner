@@ -1,5 +1,4 @@
-from json import loads as read_json
-from os.path import dirname
+from .config import entity_map
 
 
 class TakeString:
@@ -23,7 +22,7 @@ class TakeString:
         """
         self.__string: str = string
         self.__rule: str = rule
-        self.__map_reader()
+        self.__entity_map = entity_map()
 
     def __enter__(self):
         """Provide work with context manager. Return clean string"""
@@ -41,11 +40,6 @@ class TakeString:
             del self.__rule
         if self.__clean_string:
             del self.__clean_string
-
-    def __map_reader(self):
-        """Read entity map from json file and create dict by this file"""
-        with open(f'{dirname(__file__)}\\entity_map.json', mode='r', encoding='utf-8') as entity_map:
-            self.__entity_map: dict = read_json(entity_map.read())
 
     def make_clean_string(self) -> str:
         """Replace special charts by html-entity and return clean string."""
