@@ -1,4 +1,5 @@
 from json import loads as read_json
+from os.path import dirname
 
 
 class Clean:
@@ -26,7 +27,7 @@ class Clean:
 
     def __map_reader(self):
         """Read entity map from json file and create dict by this file"""
-        with open('entity_map.json', mode='r', encoding='utf-8') as entity_map:
+        with open(f'{dirname(__file__)}\\entity_map.json', mode='r', encoding='utf-8') as entity_map:
             self.__entity_map: dict = read_json(entity_map.read())
 
     def get_clean_string(self):
