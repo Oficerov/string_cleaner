@@ -5,5 +5,5 @@
 """
 
 __author__ = 'v.oficerov'
-__version__ = '0.1.3'
+__version__ = '0.1.7'
 __email__ = 'valeryoficerov@gmail.com'
