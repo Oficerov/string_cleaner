@@ -7,7 +7,7 @@
 from setuptools import setup
 from os.path import dirname
 
-version = '0.1.2'
+version = '0.1.3'
 short_description = """Module for clean string from special chars and replace it by html-entity."""
 
 with open(f'{dirname(__file__)}\\README.md', 'r', encoding='utf-8') as file:

@@ -2,7 +2,7 @@ from json import loads as read_json
 from os.path import dirname
 
 
-class Clean:
+class TakeString:
     """
     Make clean string from dirty.
     Receive string with special chars, replace this chars by html-entity and return it.
@@ -30,7 +30,7 @@ class Clean:
         with open(f'{dirname(__file__)}\\entity_map.json', mode='r', encoding='utf-8') as entity_map:
             self.__entity_map: dict = read_json(entity_map.read())
 
-    def get_clean_string(self) -> str:
+    def make_clean_string(self) -> str:
         """Replace special charts by html-entity and return clean string."""
         if self.__rule == 's':
             for symbol in self.__string:
