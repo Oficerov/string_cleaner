@@ -1,4 +1,5 @@
 def entity_map():
+    """Return map special symbols -> html-entity"""
     return {
         "'": "&apos;",
         "\"": "&quot;",
