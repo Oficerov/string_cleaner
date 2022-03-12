@@ -1,7 +1,7 @@
 # String cleaner
 Module for clean string from special chars and replace it by html-entity.
 
-#### In current version (0.2.0):
+#### In current version (0.3.1):
 * Replace special chars from string by html-entity based on the json entity map
     * symbol - "
     * symbol - '

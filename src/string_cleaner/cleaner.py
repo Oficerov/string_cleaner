@@ -9,20 +9,27 @@ class TakeString:
     __entity_map: dict = dict()
     __clean_string: str = str()
 
-    def __init__(self, string: str, rule: str = 's'):
+    def __init__(self, string: str, new_rule: str | dict = 's'):
         """
         Receive dirty string and call clea n method for clean it.
-        :param rule: can have value:
-        - MVP: 's': string:type. It'll change all special chars by html-entity in string.
-        - TO DO: EXAMPLE: ['-', ''', '"']: list:type. It'll change only specified chars in list by html-entity.
-        - TO DO: EXAMPLE: [('a', 'a1'), ('b', 'b1'), ('c', 'c1')]: list:type.
+        `:param` rule: can have value:
+
+        - ***MVP:*** 's': string:type. It'll change all special chars by html-entity in string.
+        - ***0.3.1:*** new_rule could be dict:type and make additional custom rule to replace. New rule have
+        priority using if it's replacing default rule.
+
+        `Example additional replace rule by custom dict:` ```{"<": "some_new", ">": "some_new", "a": "b"}```
+
         It'll change specified chars by specified rules.
-        Where in every nested list specified rule to replace first char by second char from this list.
-        :type rule: str:param or list:param
+        `:type` rule: `str:param` or `dict:param`
         """
         self.__string: str = string
-        self.__rule: str = rule
-        self.__entity_map = entity_map()
+        if type(new_rule) is dict:
+            self.__entity_map = entity_map(new_rule=new_rule)
+        else:
+            self.__entity_map = entity_map()
+        self.__rule: str = new_rule
+
 
     def __enter__(self):
         """Provide work with context manager. Return clean string"""
@@ -43,7 +50,7 @@ class TakeString:
 
     def make_clean_string(self) -> str:
         """Replace special charts by html-entity and return clean string."""
-        if self.__rule == 's':
+        if self.__rule == 's' or type(self.__rule) is dict:
             for symbol in self.__string:
                 if symbol in self.__entity_map:
                     self.__clean_string += self.__entity_map[symbol]
