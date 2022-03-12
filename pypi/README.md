@@ -25,7 +25,13 @@ For first install module in your virtual environment:
 ```commandline
 pip install string-cleaner
 ```
-After this you can import this module and use it:
+After this you can import this module and use it simple:
+```python
+from string_cleaner import cleaner
+clean_string = cleaner.TakeString('<script>alert(123)</script>').make_clean_string()
+```
+
+Or use it with additional parameters:
 ```python
 from string_cleaner import cleaner
 clean_string = cleaner.TakeString(string='<script>alert(123)</script>', new_rule={"(": "|", ")": "|"}).make_clean_string()
