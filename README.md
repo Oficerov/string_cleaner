@@ -8,10 +8,17 @@ Module for clean string from special chars and replace it by html-entity.
     * symbol - >
     * symbol - <
     * another quote symbols
-* Support possibility work with context manager.
+* Support possibility work with context manager. `oprional`
+* Additional users rule for replace. `oprional`
 
 #### In next versions:
-* 0.3 — additional users rule for replace
+* 0.4 — validation scheme for users input values for additional replace rules
+* 0.5 —
+* 0.6 —
+* 0.7 —
+* 0.8 —
+* 0.9 —
+* 1.0 (`release`) —
 
 #### How to use:
 For first install module in your virtual environment:
@@ -21,13 +28,13 @@ pip install string-cleaner
 After this you can import this module and use it:
 ```python
 from string_cleaner import cleaner
-clean_string = cleaner.TakeString('<script>alert(123)</script>').make_clean_string()
+clean_string = cleaner.TakeString(string='<script>alert(123)</script>', new_rule={"(": "|", ")": "|"}).make_clean_string()
 ```
 
-Also you can use it with context manager:
+Also, you can use it with context manager:
 ```python
 from string_cleaner import cleaner
 
-with cleaner.TakeString('<test>') as clean_string:
+with cleaner.TakeString(string='<script>alert(123)</script>', new_rule={"(": "|", ")": "|"}) as clean_string:
     print(clean_string)
 ```
