@@ -1,4 +1,4 @@
-def entity_map():
+def entity_map(new_rule={}):
     """Return map special symbols -> html-entity"""
     return {
         "'": "&apos;",
@@ -15,4 +15,4 @@ def entity_map():
         "›": "&rsaquo;",
         "<": "&lt;",
         ">": "&gt;"
-    }
+    } | new_rule
